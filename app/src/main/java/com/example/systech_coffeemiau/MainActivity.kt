@@ -4,14 +4,18 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.systech_coffeemiau.ui.screens.LoginView
 import com.example.systech_coffeemiau.ui.screens.ProductosView
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
+import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
+import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,13 +29,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     val navController = rememberNavController()
+                    val loginViewModel: LoginViewModel by viewModels()
+                    val productoViewModel: ProductoViewModel by viewModels()
 
                     NavHost(
                         navController = navController,
-                        startDestination = "ProductosView"
+                        startDestination = "LoginView"
                     ) {
+                        composable("LoginView") {
+                            LoginView(loginViewModel)
+                        }
                         composable("ProductosView") {
-                            ProductosView()
+                            ProductosView(productoViewModel)
                         }
                     }
                 }
