@@ -1,25 +1,10 @@
-package com.example.systech_coffeemiau.ui.screens
-
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -53,6 +38,7 @@ fun LoginView(loginViewModel: LoginViewModel) {
             contentDescription = "iescaminas",
             modifier = Modifier.clip(CircleShape)
         )
+
         TextField(
             value = email,
             onValueChange = { loginViewModel.onEmailChanged(it) },
@@ -60,16 +46,17 @@ fun LoginView(loginViewModel: LoginViewModel) {
             placeholder = {
                 Text(
                     text = "Email",
-                    color = Color.White
+                    color = Color.Gray // Use a more neutral color
                 )
             },
             modifier = Modifier
                 .fillMaxWidth(),
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Green,
-                focusedIndicatorColor = Color.Red
+                containerColor = Color.LightGray, // Change to a lighter background color
+                focusedIndicatorColor = Color.Blue // Change to a more appealing focused indicator color
             ),
         )
+
         TextField(
             value = password,
             onValueChange = { loginViewModel.onPasswordChanged(it) },
@@ -77,14 +64,14 @@ fun LoginView(loginViewModel: LoginViewModel) {
             placeholder = {
                 Text(
                     text = "Password",
-                    color = Color.White
+                    color = Color.Gray // Use a more neutral color
                 )
             },
             modifier = Modifier
                 .fillMaxWidth(),
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Green,
-                focusedIndicatorColor = Color.Red
+                containerColor = Color.LightGray, // Change to a lighter background color
+                focusedIndicatorColor = Color.Blue // Change to a more appealing focused indicator color
             ),
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password),
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
@@ -93,11 +80,12 @@ fun LoginView(loginViewModel: LoginViewModel) {
                 Icon(
                     imageVector = icon,
                     contentDescription = "Visible",
-                    tint = Color.White,
-                    modifier = Modifier.clickable { loginViewModel.togglePasswordVisibility()}
+                    tint = Color.Gray, // Use a more neutral color
+                    modifier = Modifier.clickable { loginViewModel.togglePasswordVisibility() }
                 )
             }
         )
+
         Button(
             onClick = { /*TODO*/ },
             colors = ButtonDefaults.buttonColors(
@@ -110,19 +98,24 @@ fun LoginView(loginViewModel: LoginViewModel) {
                 color = Color.Blue
             )
         }
+
         Button(
             onClick = { /*TODO*/ },
             colors = ButtonDefaults.buttonColors(
-                containerColor =  loginViewModel.changeColor(Color.Green, Color.Red)
+                containerColor = loginViewModel.changeColor(Color.Green, Color.Red)
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Blue) // Change to a more appealing button color
         ) {
             Text(
                 text = "Login In",
-                color = Color.Blue
+                color = Color.White // Change to a more contrasting text color
             )
         }
+
         Spacer(modifier = Modifier.height(30.dp))
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -139,6 +132,7 @@ fun LoginView(loginViewModel: LoginViewModel) {
                 color = Color.Blue
             )
             Spacer(modifier = Modifier.width(8.dp))
+
             Divider(
                 color = Color.Gray,
                 modifier = Modifier
