@@ -17,6 +17,6 @@ fun ProductosView() {
     ) {
         Text(
             text = "Funciona"
-            )
+        )
     }
 }
