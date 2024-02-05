@@ -5,14 +5,15 @@ import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepos
 import javax.inject.Inject
 
 class FallBackRepositoryImpl @Inject constructor(
-    val apiRepositoryImpl: ApiRepositoryImpl,
-    val jsonRepositoryImpl: JsonRepositoryImpl
+    private val apiRepositoryImpl: ApiRepositoryImpl,
+    private val jsonRepositoryImpl: JsonRepositoryImpl
 ): ISystechSolutionsRepository {
     override suspend fun getProducto(id: Long): ProductoModel {
         return try {
             apiRepositoryImpl.getProducto(id)
         } catch (e: Exception) {
-            return apiRepositoryImpl.getProducto(id)
+            return jsonRepositoryImpl.getProducto(id)
+
         }
     }
 }
