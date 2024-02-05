@@ -7,7 +7,7 @@ import com.example.systech_coffeemiau.mappers.dtotomodel.mapProductoDTOToModel
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(
-    val iSystechApiService: ISystechApiService
+    private val iSystechApiService: ISystechApiService
 ): ISystechSolutionsRepository {
     override suspend fun getProducto(id: Long): ProductoModel {
         val productoDTO = iSystechApiService.getProducto(id)

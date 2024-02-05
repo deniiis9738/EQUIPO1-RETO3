@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "LoginView"
+                        startDestination = "ProductosView"
                     ) {
                         composable("LoginView") {
                             LoginView(loginViewModel)
