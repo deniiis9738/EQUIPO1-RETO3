@@ -1,4 +1,4 @@
-package com.example.systech_coffeemiau.data.sources.dto
+package com.example.systech_coffeemiau.data.sources.remote.dto
 
 import com.google.gson.annotations.SerializedName
 

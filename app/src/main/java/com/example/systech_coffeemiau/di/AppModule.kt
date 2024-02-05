@@ -3,7 +3,7 @@ package com.example.systech_coffeemiau.di
 import android.app.Application
 import com.example.systech_coffeemiau.data.repositories.ApiRepositoryImpl
 import com.example.systech_coffeemiau.data.repositories.FallBackRepositoryImpl
-import com.example.systech_coffeemiau.data.repositories.ISystechApiService
+import com.example.systech_coffeemiau.data.sources.remote.ISystechApiService
 import com.example.systech_coffeemiau.data.repositories.JsonRepositoryImpl
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import com.google.gson.GsonBuilder
