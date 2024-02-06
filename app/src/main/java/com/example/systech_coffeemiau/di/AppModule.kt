@@ -23,7 +23,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): ISystechApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.56.1:8888/")
+            .baseUrl("http://127.0.0.1:8888/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .client(OkHttpClient.Builder().build())
             .build()
