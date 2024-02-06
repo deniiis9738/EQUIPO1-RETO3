@@ -1,12 +1,14 @@
 package com.example.systech_coffeemiau.mappers.dtotomodel
 
 import com.example.systech_coffeemiau.data.sources.dto.ProductoDTO
-import com.example.systech_coffeemiau.domain.models.ProductoModel
+import com.example.systech_coffeemiau.domain.models.Product
 
-fun mapProductoDTOToModel(productoDTO: ProductoDTO): ProductoModel {
-    return ProductoModel(
-        id_producto = productoDTO.id_producto,
-        nombre = productoDTO.nombre,
-        precio = productoDTO.precio
+fun mapProductoDTOToModel(productoDTO: ProductoDTO): Product {
+    return Product(
+        id = productoDTO.id,
+        picture = productoDTO.picture,
+        name = productoDTO.nombre,
+        description = productoDTO.description,
+        price = productoDTO.precio,
     )
 }
