@@ -41,7 +41,7 @@ fun Systech_CoffeeMiauTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = MyTypography,
         content = content
     )
 }
