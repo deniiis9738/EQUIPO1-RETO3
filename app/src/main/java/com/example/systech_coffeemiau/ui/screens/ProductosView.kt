@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -40,20 +41,7 @@ fun ProductosView(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        //val products by productoViewModel.productList.observeAsState(initial = emptyList())
-        val products = listOf(
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-            Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
-        )
+        val products by productoViewModel.productList.observeAsState(initial = emptyList())
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -91,7 +79,7 @@ fun ProductCard(product: Product) {
             verticalArrangement = Arrangement.Center
         ) {
             AsyncImage(
-                model = product.picture,
+                model = product.foto_producto,
                 contentDescription = "Product Image",
                 modifier = Modifier.size(150.dp)
             )
@@ -119,7 +107,7 @@ fun ProductCard(product: Product) {
                             verticalArrangement = Arrangement.Center
                         ) {
                             AsyncImage(
-                                model = product.picture,
+                                model = product.foto_producto,
                                 contentDescription = "Product Image",
                                 modifier = Modifier.size(150.dp)
                             )

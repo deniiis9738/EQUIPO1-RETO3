@@ -7,7 +7,7 @@ data class ProductoDTO(
     val id: Long,
 
     @SerializedName("foto_producto")
-    val picture: String,
+    val foto_producto: String,
 
     @SerializedName("nombre")
     val nombre: String,

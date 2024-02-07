@@ -3,6 +3,7 @@ package com.example.systech_coffeemiau
 import LoginView
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "LoginView"
+                        startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else ("LoginView")
                     ) {
                         composable("LoginView") {
                             LoginView(loginViewModel, navController)
