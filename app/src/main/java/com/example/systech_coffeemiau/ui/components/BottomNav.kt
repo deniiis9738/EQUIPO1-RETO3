@@ -36,7 +36,7 @@ fun BottomNav(productoViewModel: ProductoViewModel) {
     val navController = rememberNavController()
 
     Scaffold(
-        bottomBar = { BottomBar(navController = navController,productoViewModel ) }
+        bottomBar = { BottomBar(navController = navController) }
     ) {
         Modifier.padding(it)
         BottomNavGraph(
@@ -46,7 +46,7 @@ fun BottomNav(productoViewModel: ProductoViewModel) {
 }
 
 @Composable
-fun BottomBar(navController: NavHostController, productoViewModel: ProductoViewModel) {
+fun BottomBar(navController: NavHostController) {
     val screens = listOf(
         BottomBarScreen.Home,
         BottomBarScreen.Cat,
@@ -84,7 +84,7 @@ fun AddItem(
     val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
     val background =
-        if (selected) MaterialTheme.colorScheme.primary else Color.Transparent
+        if (selected) Color.Green else Color.Transparent
 
     val contentColor =
         if (selected) Color.White else Color.Black
