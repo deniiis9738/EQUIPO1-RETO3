@@ -29,6 +29,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.systech_coffeemiau.ui.components.BottomBarScreen
+import com.example.systech_coffeemiau.ui.theme.BrownishPinkComplementario
+import com.example.systech_coffeemiau.ui.theme.PaleRoseComplementario
+import com.example.systech_coffeemiau.ui.theme.PastelOrangeComplementario
+import com.example.systech_coffeemiau.ui.theme.PeachyPinkComplementario
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 
 @Composable
@@ -84,7 +88,7 @@ fun AddItem(
     val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
     val background =
-        if (selected) Color.Green else Color.Transparent
+        if (selected) PastelOrangeComplementario else Color.Transparent
 
     val contentColor =
         if (selected) Color.White else Color.Black
