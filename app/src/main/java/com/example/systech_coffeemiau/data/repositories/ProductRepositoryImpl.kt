@@ -22,7 +22,7 @@ class ProductRepositoryImpl @Inject constructor(
         return try {
             remoteDataSource.getProductFromApi(id)
         } catch (e: Exception) {
-            remoteDataSource.getProductFromApi(id)
+            localDataSource.getProductFromJson(id)
         }
     }
 }

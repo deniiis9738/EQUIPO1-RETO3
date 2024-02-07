@@ -10,9 +10,9 @@ import com.example.systech_coffeemiau.R
 
 val MyTypography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = FontFamily(Font(R.font.saltyocean)),
+        fontFamily = FontFamily(Font(R.font.shrikhand_regular)),
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
+        fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )

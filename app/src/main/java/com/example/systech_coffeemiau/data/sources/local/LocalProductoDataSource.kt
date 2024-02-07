@@ -10,7 +10,7 @@ class LocalProductoDataSource @Inject constructor(
 ) {
     private val gson = Gson()
 
-    fun getProduct(id: Long): Product {
+    fun getProductFromJson(id: Long): Product {
         val jsonInputStream = application.assets.open("producto$id.json")
         return gson.fromJson(jsonInputStream.reader(), Product::class.java)
     }

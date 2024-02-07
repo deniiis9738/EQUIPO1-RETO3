@@ -11,7 +11,7 @@ import com.example.systech_coffeemiau.ui.theme.MyTypography
 @Composable
 fun BoldText(
     text: String,
-    size: Int = 20
+    size: Int = 16
 ) {
     ProvideTextStyle(value = MyTypography.bodyLarge) {
         Text(
