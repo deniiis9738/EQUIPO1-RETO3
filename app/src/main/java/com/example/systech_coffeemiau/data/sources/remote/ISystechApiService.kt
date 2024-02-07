@@ -1,4 +1,4 @@
-package com.example.systech_coffeemiau.data.repositories
+package com.example.systech_coffeemiau.data.sources.remote
 
 import com.example.systech_coffeemiau.data.sources.dto.ProductoDTO
 import retrofit2.http.GET

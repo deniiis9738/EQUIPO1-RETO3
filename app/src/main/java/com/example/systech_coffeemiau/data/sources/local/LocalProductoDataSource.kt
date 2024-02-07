@@ -1,20 +1,16 @@
-package com.example.systech_coffeemiau.data.repositories
+package com.example.systech_coffeemiau.data.sources.local
 
 import android.app.Application
 import com.example.systech_coffeemiau.domain.models.Product
-import com.example.systech_coffeemiau.domain.repositories.IProductRepository
 import com.google.gson.Gson
 import javax.inject.Inject
 
-class JsonRepositoryImpl(
+class LocalProductoDataSource @Inject constructor(
     private val application: Application
-): IProductRepository {
+) {
     private val gson = Gson()
-    override suspend fun getProductList(): List<Product> {
-        TODO("Not yet implemented")
-    }
 
-    override suspend fun getProduct(id: Long): Product {
+    fun getProduct(id: Long): Product {
         val jsonInputStream = application.assets.open("producto$id.json")
         return gson.fromJson(jsonInputStream.reader(), Product::class.java)
     }

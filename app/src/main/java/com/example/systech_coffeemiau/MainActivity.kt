@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
-import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
+import com.example.systech_coffeemiau.ui.viewsmodels.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val loginViewModel: LoginViewModel by viewModels()
-                    val productoViewModel: ProductoViewModel by viewModels()
+                    val productViewModel: ProductViewModel by viewModels()
 
                     NavHost(
                         navController = navController,
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                             LoginView(loginViewModel)
                         }
                         composable("ProductosView") {
-                            ProductListScreen(productoViewModel)
+                            ProductListScreen(productViewModel)
                         }
                     }
                 }

@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.ui.screens.product.card.ProductCard
-import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
+import com.example.systech_coffeemiau.ui.viewsmodels.ProductViewModel
 
 @Composable
 fun ProductListScreen(
-    productoViewModel: ProductoViewModel
+    productViewModel: ProductViewModel
 ) {
     val products = listOf(
         Product(1,"https://png.pngtree.com/png-clipart/20210530/original/pngtree-coffee-cup-aroma-container-png-image_6373241.jpg","Café","Café solo con cuchara de regalo",5.5),
