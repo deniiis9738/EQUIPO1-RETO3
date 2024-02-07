@@ -36,7 +36,7 @@ fun ProductCard(product: Product) {
         shape = RoundedCornerShape(16.dp),
     ) {
         ProductComponents(
-            imageUrl = product.picture,
+            imageUrl = product.foto_producto,
             name = product.name
         )
 
@@ -51,7 +51,7 @@ fun ProductCard(product: Product) {
                 },
                 text = {
                     ProductComponents(
-                        imageUrl = product.picture,
+                        imageUrl = product.foto_producto,
                         description = product.description,
                         price = product.price
                     )
