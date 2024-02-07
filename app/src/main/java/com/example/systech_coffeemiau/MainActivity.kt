@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.systech_coffeemiau.ui.screens.GatosScreen
+import com.example.systech_coffeemiau.ui.screens.GatoScreen
 import com.example.systech_coffeemiau.ui.screens.ProductosView
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "ProductosView"
+                        startDestination = "Gato_Screen"
                     ) {
                         composable("LoginView") {
                             LoginView(loginViewModel)
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                         composable("ProductosView") {
                             ProductosView(productoViewModel)
                         }
-                        composable("Gatos_Screen"){GatosScreen(/*navController*/)}
+                        composable("Gato_Screen"){GatoScreen(/*navController*/)}
                     }
                 }
             }

@@ -1,20 +1,18 @@
 package com.example.systech_coffeemiau.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CatchingPokemon
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -22,8 +20,10 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import com.example.systech_coffeemiau.R
+import com.example.systech_coffeemiau.domain.models.GatoModel
 
 //@Preview(showSystemUi = true)
 @Composable
@@ -36,19 +36,14 @@ fun GatoImageCard(){
     )
 }
 
-@Preview(showSystemUi = true)
 @Composable
-fun GatoHeader(){
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceEvenly
-    ){
+fun GatoHeader(gato: GatoModel){
 
         Text(
             text = "NOMBRE_GATO",
             fontFamily = FontFamily( Font(R.font.shrikhand_regular) ),
             fontWeight = FontWeight.ExtraBold,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.padding(start = 50.dp)
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -65,13 +60,55 @@ fun GatoHeader(){
                 fontFamily = FontFamily( Font(R.font.shrikhand_regular) ),
                 fontWeight = FontWeight.ExtraBold
             )
+            val testString = LoremIpsum(200)
+            Text(
+                text = "Con tan solo ${gato.age} añitos, ${gato.name} es un felino con un carácter" +
+                        "${gato.personality} propio de los de su raza, ${gato.race}. Te enamorarás de" +
+                        "este encantador felino nada más vengas a conocerlo. ¿A qué esperas?" +
+                        "\nComo siempre, la protectora ${gato.shelter} es la encargada de realizar todo" +
+                        "el papeleo pertinente a la adocpión."
+            )
         }
-    }
-
-
 }
 
 @Composable
 fun GatoMedicalInfo(){
 
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 20.dp)
+    ){
+        item{
+
+            Button(
+                onClick = {
+
+                }
+            ) {
+                Text(text = "HISTORIAL MÉDICO")
+            }
+        }
+
+        item{
+
+            Button(
+                onClick = {
+
+                }
+            ) {
+                Text(text = "PROTECTORA")
+            }
+        }
+
+        item{
+
+            Button(
+                onClick = {
+
+                }
+            ) {
+                Text(text = "OTROS")
+            }
+        }
+    }
 }

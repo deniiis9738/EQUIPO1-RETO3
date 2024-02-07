@@ -12,7 +12,7 @@ import com.example.systech_coffeemiau.ui.components.GatoMedicalInfo
 
 @Preview(showSystemUi = true)
 @Composable
-fun GatosScreen(/*navController: NavController*/){
+fun GatoScreen(/*navController: NavController*/){
 
     Surface (
         modifier = Modifier.fillMaxSize(),
