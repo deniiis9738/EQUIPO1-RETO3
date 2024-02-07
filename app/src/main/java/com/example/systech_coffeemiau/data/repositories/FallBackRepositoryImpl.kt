@@ -12,7 +12,7 @@ class FallBackRepositoryImpl @Inject constructor(
         return try {
             apiRepositoryImpl.getProductList()
         } catch (e: Exception) {
-            apiRepositoryImpl.getProductList()
+            jsonRepositoryImpl.getProductList()
         }
     }
 
@@ -20,7 +20,15 @@ class FallBackRepositoryImpl @Inject constructor(
         return try {
             apiRepositoryImpl.getProducto(id)
         } catch (e: Exception) {
-            apiRepositoryImpl.getProducto(id)
+            jsonRepositoryImpl.getProducto(id)
+        }
+    }
+
+    override suspend fun login(username: String, password: String) {
+        return try {
+            apiRepositoryImpl.login(username, password)
+        } catch (e: Exception) {
+            jsonRepositoryImpl.login(username, password)
         }
     }
 }

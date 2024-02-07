@@ -18,4 +18,8 @@ class JsonRepositoryImpl @Inject constructor(
         val jsonInputStream = application.assets.open("producto$id.json")
         return gson.fromJson(jsonInputStream.reader(), Product::class.java)
     }
+
+    override suspend fun login(username: String, password: String) {
+        TODO("Not yet implemented")
+    }
 }
