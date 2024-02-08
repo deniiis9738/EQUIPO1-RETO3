@@ -7,7 +7,7 @@ import javax.inject.Inject
 class UserUseCase @Inject constructor(
     private val systechSolutionsRepository: ISystechSolutionsRepository
 ) {
-    suspend fun getUserDates(id : Long):Usuario {
+    suspend fun getUserDates(id:Long):Usuario {
         return systechSolutionsRepository.getUserDates(id)
     }
 }

@@ -77,7 +77,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
         return loginUseCase.isAtuhenticated()
     }
 
-    suspend fun getUserDates(id: Long):Usuario{
+    suspend fun getUserDates(id :Long):Usuario{
         val usuario = userUseCase.getUserDates(id)
         _usuario.postValue(usuario)
         return usuario
