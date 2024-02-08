@@ -23,12 +23,4 @@ class FallBackRepositoryImpl @Inject constructor(
             jsonRepositoryImpl.getProducto(id)
         }
     }
-
-    override suspend fun login(username: String, password: String) {
-        return try {
-            apiRepositoryImpl.login(username, password)
-        } catch (e: Exception) {
-            jsonRepositoryImpl.login(username, password)
-        }
-    }
 }

@@ -15,7 +15,4 @@ interface ISystechApiService {
 
     @GET("/api/productos/{id}")
     suspend fun getProducto(@Path("id") id: Long): ProductoDTO
-
-    @POST("login")
-    suspend fun login(@Body loginDTO: LoginDTO): Response<TokenDTO>
 }

@@ -1,14 +1,13 @@
 package com.example.systech_coffeemiau.auth
 
-import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    private val systechSolutionsRepository: ISystechSolutionsRepository,
-    private val iLocalStorage: ILocalStorage
+    private val iLocalStorage: ILocalStorage,
+    private val iLoginRepository: ILoginRepository
 ) {
     suspend fun login(username: String, password: String) {
-        return systechSolutionsRepository.login(username, password)
+        return iLoginRepository.login(username, password)
     }
 
     fun isAtuhenticated(): Boolean {
