@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                             composable("ProductosView") {
                                 ProductListScreen(productoViewModel)
                             }
-                            composable(route = BottomBarScreen.Home.route) {
+                            composable(route = BottomBarScreen.Productos.route) {
                                 ProductListScreen(productoViewModel)
                             }
                             composable(route = BottomBarScreen.Cat.route) {

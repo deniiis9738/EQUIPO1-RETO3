@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,21 +26,16 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.example.systech_coffeemiau.ui.components.BottomBarScreen
-import com.example.systech_coffeemiau.ui.theme.BrownishPinkComplementario
-import com.example.systech_coffeemiau.ui.theme.PaleRoseComplementario
 import com.example.systech_coffeemiau.ui.theme.PastelOrangeComplementario
-import com.example.systech_coffeemiau.ui.theme.PeachyPinkComplementario
-import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 
 @Composable
 fun BottomNav(navController: NavHostController) {
 
     BottomAppBar(
-        modifier = Modifier.background(Color.Transparent)
+        modifier = Modifier.fillMaxWidth().background(Color.Transparent),
+        containerColor = Color.Transparent
     ) {
-        Modifier.padding(5.dp)
         BottomBar(
             navController = navController
         )
@@ -52,7 +45,7 @@ fun BottomNav(navController: NavHostController) {
 @Composable
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
-        BottomBarScreen.Home,
+        BottomBarScreen.Productos,
         BottomBarScreen.Cat,
         BottomBarScreen.Profile
     )
@@ -128,20 +121,3 @@ fun AddItem(
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
