@@ -1,3 +1,5 @@
+package com.example.systech_coffeemiau.ui.screens
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,13 +33,16 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.systech_coffeemiau.R
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginView(loginViewModel: LoginViewModel) {
-    val email by loginViewModel.email.observeAsState(initial = "")
+fun LoginView(loginViewModel: LoginViewModel, navController: NavController) {
+    val username by loginViewModel.username.observeAsState(initial = "")
     val password by loginViewModel.password.observeAsState(initial = "")
     val passwordVisibility by loginViewModel.passwordVisibility.observeAsState(initial = false)
 
@@ -54,8 +59,8 @@ fun LoginView(loginViewModel: LoginViewModel) {
         )
 
         TextField(
-            value = email,
-            onValueChange = { loginViewModel.onEmailChanged(it) },
+            value = username,
+            onValueChange = { loginViewModel.onUsernameChanged(it) },
             enabled = true,
             placeholder = {
                 Text(
@@ -114,7 +119,14 @@ fun LoginView(loginViewModel: LoginViewModel) {
         }
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                GlobalScope.launch {
+                    loginViewModel.login()
+                }
+                if(loginViewModel.isAuthenticated()) {
+                    navController.navigate("ProductosView")
+                }
+                      },
             colors = ButtonDefaults.buttonColors(
                 containerColor = loginViewModel.changeColor(Color.Green, Color.Red)
             ),
@@ -123,7 +135,7 @@ fun LoginView(loginViewModel: LoginViewModel) {
                 .background(Color.Blue) // Change to a more appealing button color
         ) {
             Text(
-                text = "Login In",
+                text = "Log In",
                 color = Color.White // Change to a more contrasting text color
             )
         }

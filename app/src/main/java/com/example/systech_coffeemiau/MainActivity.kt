@@ -1,6 +1,6 @@
 package com.example.systech_coffeemiau
 
-import LoginView
+import com.example.systech_coffeemiau.ui.screens.LoginView
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.systech_coffeemiau.ui.screens.GatoScreen
-import com.example.systech_coffeemiau.ui.screens.ProductosView
+import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
+import compose.material.theme.bottomnav.BottomNav
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,16 +35,16 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "Gato_Screen"
+                        startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else ("LoginView")
                     ) {
                         composable("LoginView") {
-                            LoginView(loginViewModel)
+                            LoginView(loginViewModel, navController)
                         }
                         composable("ProductosView") {
-                            ProductosView(productoViewModel)
+                            ProductListScreen(productoViewModel)
                         }
-                        composable("Gato_Screen"){GatoScreen(/*navController*/)}
                     }
+                    BottomNav(productoViewModel)
                 }
             }
         }
