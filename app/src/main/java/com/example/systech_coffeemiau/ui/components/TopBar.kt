@@ -36,14 +36,7 @@ fun TopBar() {
     ) {
         TopAppBar(
             navigationIcon = {
-                Image(
-                    painter = painterResource(id = R.drawable.logo),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(115.dp)
-                        .padding(15.dp),
-                    contentScale = ContentScale.Crop
-                )
+                AppLogo(size = 115)
             },
             title = {
                 Text(
