@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.example.systech_coffeemiau.auth.AuthInterceptor
 import com.example.systech_coffeemiau.auth.ILocalStorage
+import com.example.systech_coffeemiau.data.repositories.ILoginService
+import com.example.systech_coffeemiau.data.repositories.LoginRepositoryImpl
 import com.example.systech_coffeemiau.auth.SharedPreferencesILocalStorage
 import com.example.systech_coffeemiau.data.repositories.ApiRepositoryImpl
 import com.example.systech_coffeemiau.data.repositories.FallBackRepositoryImpl
@@ -46,7 +48,7 @@ object AppModule {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssX").create()
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.56.1:8888/")
+            .baseUrl("http://192.168.122.1:8888/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -60,8 +62,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesApiRepositoryImpl(iSystechApiService: ISystechApiService, iLocalStorage: ILocalStorage): ApiRepositoryImpl {
-        return ApiRepositoryImpl(iSystechApiService, iLocalStorage)
+    fun providesLoginService(retrofit: Retrofit): ILoginService {
+        return retrofit.create(ILoginService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesApiRepositoryImpl(iSystechApiService: ISystechApiService): ApiRepositoryImpl {
+        return ApiRepositoryImpl(iSystechApiService)
     }
 
     @Provides
@@ -74,5 +82,11 @@ object AppModule {
     @Singleton
     fun provideFallBackRepositoryImpl(apiRepositoryImpl: ApiRepositoryImpl, jsonRepositoryImpl: JsonRepositoryImpl): FallBackRepositoryImpl {
         return FallBackRepositoryImpl(apiRepositoryImpl, jsonRepositoryImpl)
+    }
+
+    @Provides
+    @Singleton
+    fun providesLoginRepositoryImpl(iLoginService: ILoginService, iLocalStorage: ILocalStorage): LoginRepositoryImpl {
+        return LoginRepositoryImpl(iLoginService, iLocalStorage)
     }
 }
