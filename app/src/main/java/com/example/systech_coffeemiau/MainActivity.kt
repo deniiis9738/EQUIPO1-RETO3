@@ -26,7 +26,7 @@ import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
-import compose.material.theme.bottomnav.BottomBar
+import com.example.systech_coffeemiau.ui.components.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
