@@ -6,12 +6,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.systech_coffeemiau.ui.components.BottomBarScreen
 import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
@@ -26,25 +31,41 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Systech_CoffeeMiauTheme {
+                val navController = rememberNavController()
+                val loginViewModel: LoginViewModel by viewModels()
+                val productoViewModel: ProductoViewModel by viewModels()
                 Scaffold(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = { BottomNav(navController) }
                 ) {
-                    val navController = rememberNavController()
-                    val loginViewModel: LoginViewModel by viewModels()
-                    val productoViewModel: ProductoViewModel by viewModels()
 
-                    NavHost(
-                        navController = navController,
-                        startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else ("LoginView")
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = it.calculateTopPadding())
+                            .background(Color.Transparent)
                     ) {
-                        composable("LoginView") {
-                            LoginView(loginViewModel, navController)
-                        }
-                        composable("ProductosView") {
-                            ProductListScreen(productoViewModel)
+                        NavHost(
+                            navController = navController,
+                            startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else "LoginView"
+                        ) {
+                            composable("LoginView") {
+                                LoginView(loginViewModel, navController)
+                            }
+                            composable("ProductosView") {
+                                ProductListScreen(productoViewModel)
+                            }
+                            composable(route = BottomBarScreen.Productos.route) {
+                                ProductListScreen(productoViewModel)
+                            }
+                            composable(route = BottomBarScreen.Cat.route) {
+                                ProductListScreen(productoViewModel)
+                            }
+                            composable(route = BottomBarScreen.Profile.route) {
+                                ProductListScreen(productoViewModel)
+                            }
                         }
                     }
-                    BottomNav(productoViewModel)
                 }
             }
         }

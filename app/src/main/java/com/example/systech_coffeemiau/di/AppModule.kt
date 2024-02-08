@@ -46,7 +46,7 @@ object AppModule {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssX").create()
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.122.1:8888/")
+            .baseUrl("http://192.168.56.1:8888/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
