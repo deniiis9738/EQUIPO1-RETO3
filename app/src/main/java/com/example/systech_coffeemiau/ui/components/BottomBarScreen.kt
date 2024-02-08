@@ -9,7 +9,7 @@ sealed class BottomBarScreen(
     val icon_focused: Int
 ) {
 
-    object Home: BottomBarScreen(
+    object Productos: BottomBarScreen(
         route = "productos",
         title = "Productos",
         icon = R.drawable.ic_bottom_home,
