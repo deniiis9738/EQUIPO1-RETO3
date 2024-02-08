@@ -13,9 +13,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductoViewModel @Inject constructor(
-    private val productoUseCase: ProductoUseCase
-): ViewModel() {
+class ProductoViewModel @Inject constructor(private val productoUseCase: ProductoUseCase): ViewModel() {
     init {
         getProductList()
     }

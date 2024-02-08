@@ -3,6 +3,7 @@ package com.example.systech_coffeemiau.data.repositories
 import com.example.systech_coffeemiau.auth.LoginDTO
 import com.example.systech_coffeemiau.auth.TokenDTO
 import com.example.systech_coffeemiau.data.sources.dto.ProductoDTO
+import com.example.systech_coffeemiau.data.sources.dto.UsuarioDTO
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,4 +19,7 @@ interface ISystechApiService {
 
     @POST("login")
     suspend fun login(@Body loginDTO: LoginDTO): Response<TokenDTO>
+
+    @GET("/api/usuarios/{id}")
+    suspend fun getUserDates(@Path("id")id:Long): Response<UsuarioDTO>
 }

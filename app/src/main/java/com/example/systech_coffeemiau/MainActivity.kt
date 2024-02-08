@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.systech_coffeemiau.ui.components.BottomBarScreen
 import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
+import com.example.systech_coffeemiau.ui.screens.userDates.UserDatesScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else "LoginView"
+                            startDestination = /*if(loginViewModel.isAuthenticated()) "ProductosView" else*/ "LoginView"
                         ) {
                             composable("LoginView") {
                                 LoginView(loginViewModel, navController)
@@ -62,7 +63,7 @@ class MainActivity : ComponentActivity() {
                                 ProductListScreen(productoViewModel)
                             }
                             composable(route = BottomBarScreen.Profile.route) {
-                                ProductListScreen(productoViewModel)
+                                UserDatesScreen(loginViewModel)
                             }
                         }
                     }
