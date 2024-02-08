@@ -120,12 +120,10 @@ fun LoginView(loginViewModel: LoginViewModel, navController: NavController) {
 
         Button(
             onClick = {
-                GlobalScope.launch {
-                    loginViewModel.login()
-                }
-                if(loginViewModel.isAuthenticated()) {
-                    navController.navigate("ProductosView")
-                }
+                loginViewModel.login()
+//                if(loginViewModel.isAuthenticated()) {
+//                    navController.navigate("ProductosView")
+//                }
                       },
             colors = ButtonDefaults.buttonColors(
                 containerColor = loginViewModel.changeColor(Color.Green, Color.Red)

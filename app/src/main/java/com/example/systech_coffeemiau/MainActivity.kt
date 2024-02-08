@@ -11,19 +11,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.systech_coffeemiau.ui.components.BottomBarScreen
+import com.example.systech_coffeemiau.ui.components.TopBar
 import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
-import compose.material.theme.bottomnav.BottomNav
+import compose.material.theme.bottomnav.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,15 +39,27 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val loginViewModel: LoginViewModel by viewModels()
                 val productoViewModel: ProductoViewModel by viewModels()
+
+                var isBarVisible by remember { mutableStateOf(true) }
+
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    bottomBar = { BottomNav(navController) }
+                    bottomBar = {
+                        if (isBarVisible) {
+                            BottomBar(navController)
+                        }
+                    },
+                    topBar = {
+                        if (isBarVisible) {
+                            TopBar()
+                        }
+                    },
                 ) {
 
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(top = it.calculateTopPadding())
+                            .padding(top = it.calculateTopPadding(), bottom = it.calculateTopPadding())
                             .background(Color.Transparent)
                     ) {
                         NavHost(
@@ -52,18 +67,23 @@ class MainActivity : ComponentActivity() {
                             startDestination = /*if(loginViewModel.isAuthenticated()) "ProductosView" else*/ "LoginView"
                         ) {
                             composable("LoginView") {
+                                isBarVisible = false
                                 LoginView(loginViewModel, navController)
                             }
                             composable("ProductosView") {
+                                isBarVisible = true
                                 ProductListScreen(productoViewModel)
                             }
                             composable(route = BottomBarScreen.Productos.route) {
+                                isBarVisible = true
                                 ProductListScreen(productoViewModel)
                             }
                             composable(route = BottomBarScreen.Cat.route) {
+                                isBarVisible = true
                                 ProductListScreen(productoViewModel)
                             }
                             composable(route = BottomBarScreen.Profile.route) {
+                                isBarVisible = true
                                 ProductListScreen(productoViewModel)
                             }
                         }
