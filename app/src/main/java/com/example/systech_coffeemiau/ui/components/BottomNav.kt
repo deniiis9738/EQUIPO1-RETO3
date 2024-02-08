@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -36,15 +37,14 @@ import com.example.systech_coffeemiau.ui.theme.PeachyPinkComplementario
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 
 @Composable
-fun BottomNav(productoViewModel: ProductoViewModel) {
-    val navController = rememberNavController()
+fun BottomNav(navController: NavHostController) {
 
-    Scaffold(
-        bottomBar = { BottomBar(navController = navController) }
+    BottomAppBar(
+        modifier = Modifier.background(Color.Transparent)
     ) {
-        Modifier.padding(it)
-        BottomNavGraph(
-            navController = navController, productoViewModel
+        Modifier.padding(5.dp)
+        BottomBar(
+            navController = navController
         )
     }
 }
