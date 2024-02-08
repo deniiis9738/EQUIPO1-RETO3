@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,26 +20,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.systech_coffeemiau.ui.components.BottomBarScreen
 import com.example.systech_coffeemiau.ui.theme.PastelOrangeComplementario
-
-@Composable
-fun BottomNav(navController: NavHostController) {
-
-    BottomAppBar(
-        modifier = Modifier.fillMaxWidth().background(Color.Transparent),
-        containerColor = Color.Transparent
-    ) {
-        BottomBar(
-            navController = navController
-        )
-    }
-}
 
 @Composable
 fun BottomBar(navController: NavHostController) {
@@ -50,8 +34,11 @@ fun BottomBar(navController: NavHostController) {
         BottomBarScreen.Profile
     )
 
-    val navStackBackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navStackBackEntry?.destination
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    val initialSelectedItem = screens.firstOrNull { it.route == currentDestination?.route }
+        ?: screens.first()
 
     Row(
         modifier = Modifier
@@ -64,27 +51,24 @@ fun BottomBar(navController: NavHostController) {
         screens.forEach { screen ->
             AddItem(
                 screen = screen,
-                currentDestination = currentDestination,
-                navController = navController
+                navController = navController,
+                isSelected = screen == initialSelectedItem
             )
         }
     }
-
 }
 
 @Composable
 fun AddItem(
     screen: BottomBarScreen,
-    currentDestination: NavDestination?,
-    navController: NavHostController
+    navController: NavHostController,
+    isSelected: Boolean
 ) {
-    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
-
     val background =
-        if (selected) PastelOrangeComplementario else Color.Transparent
+        if (isSelected) PastelOrangeComplementario else Color.Transparent
 
     val contentColor =
-        if (selected) Color.White else Color.Black
+        if (isSelected) Color.White else Color.Black
 
     Box(
         modifier = Modifier
@@ -104,15 +88,13 @@ fun AddItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-
-
             Icon(
-                painter = painterResource(id = if (selected) screen.icon_focused else screen.icon),
+                painter = painterResource(id = if (isSelected) screen.icon_focused else screen.icon),
                 contentDescription = "icon",
                 tint = contentColor
             )
 
-            AnimatedVisibility(visible = selected) {
+            AnimatedVisibility(visible = isSelected) {
                 Text(
                     text = screen.title,
                     color = contentColor

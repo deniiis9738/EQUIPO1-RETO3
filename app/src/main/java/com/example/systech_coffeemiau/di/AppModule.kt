@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.example.systech_coffeemiau.auth.AuthInterceptor
 import com.example.systech_coffeemiau.auth.ILocalStorage
-import com.example.systech_coffeemiau.auth.ILoginService
-import com.example.systech_coffeemiau.auth.LoginRepositoryImpl
+import com.example.systech_coffeemiau.data.repositories.ILoginService
+import com.example.systech_coffeemiau.data.repositories.LoginRepositoryImpl
 import com.example.systech_coffeemiau.auth.SharedPreferencesILocalStorage
 import com.example.systech_coffeemiau.data.repositories.ApiRepositoryImpl
 import com.example.systech_coffeemiau.data.repositories.FallBackRepositoryImpl
