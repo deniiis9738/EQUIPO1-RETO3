@@ -60,4 +60,8 @@ class LoginViewModel @Inject constructor(
     suspend fun login() {
         loginUseCase.login(username.value.toString(), password.value.toString())
     }
+
+    fun isAuthenticated(): Boolean {
+        return loginUseCase.isAtuhenticated()
+    }
 }

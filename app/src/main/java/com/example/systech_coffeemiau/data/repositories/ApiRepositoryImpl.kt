@@ -1,8 +1,8 @@
 package com.example.systech_coffeemiau.data.repositories
 
 import android.util.Log
+import com.example.systech_coffeemiau.auth.ILocalStorage
 import com.example.systech_coffeemiau.auth.LoginDTO
-import com.example.systech_coffeemiau.auth.TokenDTO
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import com.example.systech_coffeemiau.mappers.dtotomodel.mapProductoDTOToModel
@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(
-    private val iSystechApiService: ISystechApiService
+    private val iSystechApiService: ISystechApiService,
+    private val iLocalStorage: ILocalStorage
 ): ISystechSolutionsRepository {
     override suspend fun getProductList(): List<Product> {
         val products = iSystechApiService.getProducts()
@@ -32,7 +33,11 @@ class ApiRepositoryImpl @Inject constructor(
             val response = iSystechApiService.login(loginDTO)
             if(response.isSuccessful) {
                 val token = response.body()
-                Log.d("AndroidKotlinDenis", "token: ${token!!.token}")
+                Log.d("Token", "token: ${token!!.token}")
+                iLocalStorage.saveToken(token.token)
+                Log.d("TokenAlmacenamiento", "token desde el almacenamiento: ${iLocalStorage.getToken()}")
+            } else {
+                Log.d("Fallo Token", "No ha podido coger token")
             }
         }
     }

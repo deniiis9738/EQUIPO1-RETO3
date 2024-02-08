@@ -11,7 +11,7 @@ import retrofit2.http.Path
 
 interface ISystechApiService {
     @GET("/api/productos")
-    suspend fun getProducts(): ArrayList<ProductoDTO>
+    suspend fun getProducts(): List<ProductoDTO>
 
     @GET("/api/productos/{id}")
     suspend fun getProducto(@Path("id") id: Long): ProductoDTO
