@@ -6,7 +6,7 @@ import com.example.systech_coffeemiau.domain.models.Product
 fun mapProductoDTOToModel(productoDTO: ProductoDTO): Product {
     return Product(
         id = productoDTO.id,
-        picture = productoDTO.picture,
+        foto_producto = productoDTO.foto_producto,
         name = productoDTO.nombre,
         description = productoDTO.description,
         price = productoDTO.precio,

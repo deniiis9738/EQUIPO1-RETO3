@@ -12,7 +12,7 @@ class FallBackRepositoryImpl @Inject constructor(
         return try {
             apiRepositoryImpl.getProductList()
         } catch (e: Exception) {
-            jsonRepositoryImpl.getProductList()
+            apiRepositoryImpl.getProductList()
         }
     }
 

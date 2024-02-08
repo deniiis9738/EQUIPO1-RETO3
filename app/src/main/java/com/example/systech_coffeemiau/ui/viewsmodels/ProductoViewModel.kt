@@ -17,7 +17,7 @@ class ProductoViewModel @Inject constructor(
     private val productoUseCase: ProductoUseCase
 ): ViewModel() {
     init {
-        //getProducto(1)
+        getProductList()
     }
 
     private var _productList = MutableLiveData<List<Product>>()
@@ -27,7 +27,13 @@ class ProductoViewModel @Inject constructor(
 
     fun getProductList(){
         viewModelScope.launch {
-            _productList.value = productoUseCase.getProductList()
+            val loadedProductosList = withContext(Dispatchers.IO) {
+                val productosList = productoUseCase.getProductList()
+                productosList.map { producto ->
+                    productoUseCase.getProducto(producto.id)
+                }
+            }
+            _productList.postValue(loadedProductosList)
         }
     }
 
