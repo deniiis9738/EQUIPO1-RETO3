@@ -6,6 +6,7 @@ import com.example.systech_coffeemiau.auth.LoginDTO
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import com.example.systech_coffeemiau.mappers.dtotomodel.mapProductoDTOToModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class ApiRepositoryImpl @Inject constructor(
         return mapProductoDTOToModel(productoDTO)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override suspend fun login(username: String, password: String) {
         GlobalScope.launch {
             val loginDTO = LoginDTO(
