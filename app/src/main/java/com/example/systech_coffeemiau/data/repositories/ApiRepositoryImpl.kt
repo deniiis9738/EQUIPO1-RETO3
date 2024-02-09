@@ -11,7 +11,6 @@ import com.example.systech_coffeemiau.mappers.dtotomodel.mapUsuarioDTOToModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(

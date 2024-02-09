@@ -10,12 +10,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.usecases.LoginUseCase
 import com.example.systech_coffeemiau.domain.usecases.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

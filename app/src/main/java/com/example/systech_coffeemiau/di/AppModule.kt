@@ -4,13 +4,13 @@ import android.app.Application
 import android.content.Context
 import com.example.systech_coffeemiau.auth.AuthInterceptor
 import com.example.systech_coffeemiau.auth.ILocalStorage
-import com.example.systech_coffeemiau.data.repositories.ILoginService
-import com.example.systech_coffeemiau.data.repositories.LoginRepositoryImpl
 import com.example.systech_coffeemiau.auth.SharedPreferencesILocalStorage
 import com.example.systech_coffeemiau.data.repositories.ApiRepositoryImpl
 import com.example.systech_coffeemiau.data.repositories.FallBackRepositoryImpl
+import com.example.systech_coffeemiau.data.repositories.ILoginService
 import com.example.systech_coffeemiau.data.repositories.ISystechApiService
 import com.example.systech_coffeemiau.data.repositories.JsonRepositoryImpl
+import com.example.systech_coffeemiau.data.repositories.LoginRepositoryImpl
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

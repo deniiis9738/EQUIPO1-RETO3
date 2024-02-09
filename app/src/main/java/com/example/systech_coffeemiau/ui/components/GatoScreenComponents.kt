@@ -19,10 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import com.example.systech_coffeemiau.R
-import com.example.systech_coffeemiau.domain.models.GatoModel
 
 //@Preview(showSystemUi = true)
 @Composable
