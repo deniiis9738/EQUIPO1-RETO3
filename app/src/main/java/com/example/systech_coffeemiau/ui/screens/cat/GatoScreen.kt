@@ -1,4 +1,4 @@
-package com.example.systech_coffeemiau.ui.screens
+package com.example.systech_coffeemiau.ui.screens.cat
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

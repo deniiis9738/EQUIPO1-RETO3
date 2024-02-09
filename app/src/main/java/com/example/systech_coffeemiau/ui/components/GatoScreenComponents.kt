@@ -19,7 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import com.example.systech_coffeemiau.R
@@ -37,7 +36,7 @@ fun GatoImageCard(){
 }
 
 @Composable
-fun GatoHeader(gato: GatoModel){
+fun GatoHeader(){
 
         Text(
             text = "NOMBRE_GATO",
@@ -60,13 +59,14 @@ fun GatoHeader(gato: GatoModel){
                 fontFamily = FontFamily( Font(R.font.shrikhand_regular) ),
                 fontWeight = FontWeight.ExtraBold
             )
-            val testString = LoremIpsum(200)
+
             Text(
-                text = "Con tan solo ${gato.age} añitos, ${gato.name} es un felino con un carácter" +
+                text = "test prueba"
+                        /*"Con tan solo ${gato.age} añitos, ${gato.name} es un felino con un carácter" +
                         "${gato.personality} propio de los de su raza, ${gato.race}. Te enamorarás de" +
                         "este encantador felino nada más vengas a conocerlo. ¿A qué esperas?" +
                         "\nComo siempre, la protectora ${gato.shelter} es la encargada de realizar todo" +
-                        "el papeleo pertinente a la adocpión."
+                        "el papeleo pertinente a la adocpión."*/
             )
         }
 }

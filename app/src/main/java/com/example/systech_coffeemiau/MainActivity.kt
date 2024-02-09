@@ -1,6 +1,5 @@
 package com.example.systech_coffeemiau
 
-import com.example.systech_coffeemiau.ui.screens.LoginView
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,8 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.systech_coffeemiau.ui.screens.cat.GatoListScreen
+import com.example.systech_coffeemiau.ui.screens.LoginView
 import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
+import com.example.systech_coffeemiau.ui.viewsmodels.GatoViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 import compose.material.theme.bottomnav.BottomNav
@@ -32,6 +34,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     val loginViewModel: LoginViewModel by viewModels()
                     val productoViewModel: ProductoViewModel by viewModels()
+                    val gatoViewModel: GatoViewModel by viewModels()
 
                     NavHost(
                         navController = navController,
@@ -42,6 +45,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("ProductosView") {
                             ProductListScreen(productoViewModel)
+                        }
+                        composable("GatosList_Screen"){
+                            GatoListScreen( navController, gatoViewModel )
                         }
                     }
                     BottomNav(productoViewModel)

@@ -1,4 +1,4 @@
-package com.example.systech_coffeemiau.ui.screens
+package com.example.systech_coffeemiau.ui.screens.cat
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +29,7 @@ fun GatoListScreen(
 
         item {
             LazyVerticalGrid(columns = GridCells.Fixed(2)){
-                items(gatoViewModel.gatoList.size){
+                items(12){
                     GatoCardItem()
                 }
             }

@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.systech_coffeemiau.auth.ILocalStorage
 import com.example.systech_coffeemiau.auth.LoginDTO
 import com.example.systech_coffeemiau.domain.models.Product
+import com.example.systech_coffeemiau.domain.repositories.ISystechLoginRepository
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import com.example.systech_coffeemiau.mappers.dtotomodel.mapProductoDTOToModel
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class ApiRepositoryImpl @Inject constructor(
     private val iSystechApiService: ISystechApiService,
     private val iLocalStorage: ILocalStorage
-): ISystechSolutionsRepository {
+): ISystechSolutionsRepository, ISystechLoginRepository {
     override suspend fun getProductList(): List<Product> {
         val products = iSystechApiService.getProducts()
         return products.map { mapProductoDTOToModel(it) }
