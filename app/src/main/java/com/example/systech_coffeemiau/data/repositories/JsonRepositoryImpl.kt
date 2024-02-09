@@ -1,15 +1,18 @@
 package com.example.systech_coffeemiau.data.repositories
 
 import android.app.Application
+import com.example.systech_coffeemiau.domain.models.GatoModel
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.models.Usuario
+import com.example.systech_coffeemiau.domain.repositories.ISystechGatoRepository
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import com.google.gson.Gson
 import javax.inject.Inject
 
 class JsonRepositoryImpl @Inject constructor(
     private val application: Application
-): ISystechSolutionsRepository {
+): ISystechSolutionsRepository, ISystechGatoRepository {
+
     private val gson = Gson()
     override suspend fun getProductList(): List<Product> {
         TODO("Not yet implemented")
@@ -27,5 +30,13 @@ class JsonRepositoryImpl @Inject constructor(
     override suspend fun getUserDates(username: String): Usuario {
         val jsonInputStream = application.assets.open("usuario$username.json")
         return gson.fromJson(jsonInputStream.reader(), Usuario::class.java)
+    }
+
+    override suspend fun getGato(idGato: Long): GatoModel {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGatoList(): List<GatoModel> {
+        TODO("Not yet implemented")
     }
 }
