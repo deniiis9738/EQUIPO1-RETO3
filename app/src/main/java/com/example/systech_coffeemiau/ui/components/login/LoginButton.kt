@@ -5,6 +5,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
@@ -21,11 +23,14 @@ fun LoginButton(
     navController: NavController,
     message: String
 ) {
+    val username by loginViewModel.username.observeAsState(initial = "")
+
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
             GlobalScope.launch {
                 loginViewModel.login()
+                loginViewModel.getUserDates(username)
             }
             if (loginViewModel.isAuthenticated()) {
                 navController.navigate("ProductosView")

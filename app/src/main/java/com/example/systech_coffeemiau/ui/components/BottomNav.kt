@@ -1,4 +1,4 @@
-package compose.material.theme.bottomnav
+package com.example.systech_coffeemiau.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.systech_coffeemiau.ui.components.BottomBarScreen
 import com.example.systech_coffeemiau.ui.theme.PastelOrangeComplementario
 
 @Composable
@@ -89,7 +88,7 @@ fun AddItem(
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Icon(
-                painter = painterResource(id = if (isSelected) screen.icon_focused else screen.icon),
+                painter = painterResource(id = if (isSelected) screen.iconFocused else screen.icon),
                 contentDescription = "icon",
                 tint = contentColor
             )
