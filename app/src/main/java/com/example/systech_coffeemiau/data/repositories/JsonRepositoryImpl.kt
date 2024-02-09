@@ -2,6 +2,7 @@ package com.example.systech_coffeemiau.data.repositories
 
 import android.app.Application
 import com.example.systech_coffeemiau.domain.models.Product
+import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import com.google.gson.Gson
 import javax.inject.Inject
@@ -21,5 +22,10 @@ class JsonRepositoryImpl @Inject constructor(
 
     override suspend fun login(username: String, password: String) {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserDates(username: String): Usuario {
+        val jsonInputStream = application.assets.open("usuario$username.json")
+        return gson.fromJson(jsonInputStream.reader(), Usuario::class.java)
     }
 }

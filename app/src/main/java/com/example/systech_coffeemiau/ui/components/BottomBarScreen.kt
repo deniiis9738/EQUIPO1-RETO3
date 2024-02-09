@@ -6,28 +6,28 @@ sealed class BottomBarScreen(
     val route: String,
     val title: String,
     val icon: Int,
-    val icon_focused: Int
+    val iconFocused: Int
 ) {
 
-    object Home: BottomBarScreen(
+    data object Productos: BottomBarScreen(
         route = "productos",
         title = "Productos",
         icon = R.drawable.ic_bottom_home,
-        icon_focused = R.drawable.ic_bottom_home_focused
+        iconFocused = R.drawable.ic_bottom_home_focused
     )
 
-    object Cat: BottomBarScreen(
+    data object Cat: BottomBarScreen(
         route = "gatos",
         title = "Gatos",
         icon = R.drawable.ic_bottom_cat,
-        icon_focused = R.drawable.ic_bottom_cat_focused
+        iconFocused = R.drawable.ic_bottom_cat_focused
     )
 
-    object Profile: BottomBarScreen(
+    data object Profile: BottomBarScreen(
         route = "perfil",
         title = "Perfil",
         icon = R.drawable.ic_bottom_profile,
-        icon_focused = R.drawable.ic_bottom_profile_focused
+        iconFocused = R.drawable.ic_bottom_profile_focused
     )
 
 }

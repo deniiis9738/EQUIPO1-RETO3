@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.systech_coffeemiau.domain.models.Product
-import com.example.systech_coffeemiau.domain.usecases.GetProductoUseCase
+import com.example.systech_coffeemiau.domain.usecases.ProductoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,9 +13,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductoViewModel @Inject constructor(
-    private val productoUseCase: GetProductoUseCase
-): ViewModel() {
+class ProductoViewModel @Inject constructor(private val productoUseCase: ProductoUseCase): ViewModel() {
     init {
         getProductList()
     }
@@ -25,7 +23,7 @@ class ProductoViewModel @Inject constructor(
     private var _productoModel = MutableLiveData<Product>()
     val productoModel: LiveData<Product> = _productoModel
 
-    private fun getProductList(){
+    fun getProductList(){
         viewModelScope.launch {
             val loadedProductosList = withContext(Dispatchers.IO) {
                 val productosList = productoUseCase.getProductList()
