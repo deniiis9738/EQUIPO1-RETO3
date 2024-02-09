@@ -20,6 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 const val SHARED_PREFERENCES_NAME = "shared_preferences"
+const val IP_PERE = "http://192.168.122.1:8888/"
+const val IP_PITI = "http://192.168.0.17:8888/"
+const val IP_DENIS_EDUARD = "http://192.168.56.1:8888/"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -46,7 +49,7 @@ object AppModule {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssX").create()
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.122.1:8888/")
+            .baseUrl(IP_PITI)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
