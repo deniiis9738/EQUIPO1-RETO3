@@ -23,6 +23,6 @@ interface ISystechApiService {
     @GET("/api/usuarios/username/{username}")
     suspend fun getUserDates(@Path("username")username:String): Response<UsuarioDTO>
 
-    @GET("/api/usuarios/me")
+    @POST("/api/usuarios/me")
     suspend fun getActualUserDates(@Body tokenDTO: TokenDTO): Response<UsuarioDTO>
 }

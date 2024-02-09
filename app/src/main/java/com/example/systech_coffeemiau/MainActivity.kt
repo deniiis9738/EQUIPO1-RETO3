@@ -29,10 +29,12 @@ import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 import com.example.systech_coffeemiau.ui.components.BottomBar
 import com.example.systech_coffeemiau.ui.screens.userDates.UserDatesScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -85,6 +87,9 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(route = BottomBarScreen.Profile.route) {
                                 isBarVisible = true
+                                GlobalScope.launch {
+                                    loginViewModel.getActualUserDates()
+                                }
                                 UserDatesScreen(loginViewModel, navController)
                             }
                         }

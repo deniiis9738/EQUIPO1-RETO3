@@ -46,7 +46,7 @@ class FallBackRepositoryImpl @Inject constructor(
         return try {
             apiRepositoryImpl.getActualUserDates(tokenDTO)
         } catch (e: Exception) {
-            jsonRepositoryImpl.getActualUserDates(tokenDTO)
+            apiRepositoryImpl.getActualUserDates(tokenDTO)
         }
     }
 }
