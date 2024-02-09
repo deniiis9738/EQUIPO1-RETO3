@@ -1,4 +1,4 @@
-package com.example.systech_coffeemiau.ui.components
+package com.example.systech_coffeemiau.ui.components.cat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
