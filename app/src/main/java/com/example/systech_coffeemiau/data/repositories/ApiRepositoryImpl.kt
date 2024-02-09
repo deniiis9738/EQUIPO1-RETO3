@@ -3,6 +3,7 @@ package com.example.systech_coffeemiau.data.repositories
 import android.util.Log
 import com.example.systech_coffeemiau.auth.ILocalStorage
 import com.example.systech_coffeemiau.data.sources.dto.LoginDTO
+import com.example.systech_coffeemiau.data.sources.dto.TokenDTO
 import com.example.systech_coffeemiau.data.sources.dto.UsuarioDTO
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.models.Usuario
@@ -55,5 +56,10 @@ class ApiRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             return Usuario(0, "", "", "", "")
         }
+    }
+
+    override suspend fun getActualUserDates(tokenDTO: TokenDTO): Usuario {
+        val usuarioDTO = iSystechApiService.getActualUserDates(tokenDTO)
+        return mapUsuarioDTOToModel(usuarioDTO)
     }
 }

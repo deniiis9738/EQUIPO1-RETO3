@@ -1,5 +1,6 @@
 package com.example.systech_coffeemiau.data.repositories
 
+import com.example.systech_coffeemiau.data.sources.dto.TokenDTO
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
@@ -38,6 +39,14 @@ class FallBackRepositoryImpl @Inject constructor(
             apiRepositoryImpl.getUserDates(username)
         } catch (e: Exception) {
             jsonRepositoryImpl.getUserDates(username)
+        }
+    }
+
+    override suspend fun getActualUserDates(tokenDTO: TokenDTO): Usuario {
+        return try {
+            apiRepositoryImpl.getActualUserDates(tokenDTO)
+        } catch (e: Exception) {
+            jsonRepositoryImpl.getActualUserDates(tokenDTO)
         }
     }
 }

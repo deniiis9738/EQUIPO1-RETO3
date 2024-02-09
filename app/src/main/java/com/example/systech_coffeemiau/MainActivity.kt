@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = /*if(loginViewModel.isAuthenticated()) "ProductosView" else*/ "LoginView"
+                            startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else "LoginView"
                         ) {
                             composable("LoginView") {
                                 isBarVisible = false

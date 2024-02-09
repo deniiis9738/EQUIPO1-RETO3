@@ -63,11 +63,20 @@ fun UserDatesScreen(loginViewModel: LoginViewModel, navController: NavHostContro
                     ) {
                         Text("Desconectar / Cerrar cuenta", fontSize = 18.sp)
 
-                }
+                    }
 
 
             } else {
                 Text(text = "Error")
+                Button(
+                    onClick = {
+                        loginViewModel.clearToken()
+                        navController.navigate("LoginView")
+                    }
+                ) {
+                    Text("Desconectar / Cerrar cuenta", fontSize = 18.sp)
+
+                }
             }
 
         }

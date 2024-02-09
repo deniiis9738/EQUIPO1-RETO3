@@ -10,14 +10,21 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.usecases.LoginUseCase
 import com.example.systech_coffeemiau.domain.usecases.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val userUseCase: UserUseCase): ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    private val userUseCase: UserUseCase
+): ViewModel() {
     private var _email = MutableLiveData("")
     val email: LiveData<String> = _email
 
@@ -61,8 +68,12 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
         return if (validateFields()) firstColor else secondColor
     }
 
-    suspend fun login() {
-        loginUseCase.login(username.value.toString(), password.value.toString())
+    fun login() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                loginUseCase.login(username.value.toString(), password.value.toString())
+            }
+        }
     }
 
     fun isAuthenticated(): Boolean {
