@@ -85,7 +85,7 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(route = BottomBarScreen.Profile.route) {
                                 isBarVisible = true
-                                UserDatesScreen(loginViewModel)
+                                UserDatesScreen(loginViewModel, navController)
                             }
                         }
                     }

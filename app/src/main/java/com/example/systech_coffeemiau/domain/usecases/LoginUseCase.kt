@@ -15,4 +15,8 @@ class LoginUseCase @Inject constructor(
     fun isAtuhenticated(): Boolean {
         return iLocalStorage.isAuthenticated()
     }
+
+    fun clearToken() {
+        iLocalStorage.clearToken()
+    }
 }

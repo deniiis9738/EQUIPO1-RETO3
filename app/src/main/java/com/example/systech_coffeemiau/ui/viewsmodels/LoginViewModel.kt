@@ -69,6 +69,10 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
         return loginUseCase.isAtuhenticated()
     }
 
+    fun clearToken() {
+        loginUseCase.clearToken()
+    }
+
     suspend fun getUserDates(username: String):Usuario{
         val usuario = userUseCase.getUserDates(username)
         _usuario.postValue(usuario)
