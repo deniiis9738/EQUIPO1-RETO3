@@ -3,7 +3,6 @@ package com.example.systech_coffeemiau.data.repositories
 import android.util.Log
 import com.example.systech_coffeemiau.auth.ILocalStorage
 import com.example.systech_coffeemiau.data.sources.dto.LoginDTO
-import com.example.systech_coffeemiau.data.sources.dto.UsuarioDTO
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
@@ -12,7 +11,6 @@ import com.example.systech_coffeemiau.mappers.dtotomodel.mapUsuarioDTOToModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(

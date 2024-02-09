@@ -78,4 +78,12 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
         _usuario.postValue(usuario)
         return usuario
     }
+
+    fun setUsername(newUsername: String) {
+        _username.value = newUsername
+    }
+
+    fun setPassword(newPassword: String) {
+        _password.value = newPassword
+    }
 }

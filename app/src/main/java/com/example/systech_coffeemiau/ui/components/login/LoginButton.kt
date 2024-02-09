@@ -31,6 +31,7 @@ fun LoginButton(
             GlobalScope.launch {
                 loginViewModel.login()
                 loginViewModel.getUserDates(username)
+                loginViewModel.username
             }
             if (loginViewModel.isAuthenticated()) {
                 navController.navigate("ProductosView")
