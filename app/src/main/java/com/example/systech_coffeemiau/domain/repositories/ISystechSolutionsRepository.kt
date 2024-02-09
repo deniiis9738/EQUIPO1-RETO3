@@ -7,5 +7,5 @@ interface ISystechSolutionsRepository {
     suspend fun getProductList(): List<Product>
     suspend fun getProducto(id: Long): Product
     suspend fun login(username: String, password: String)
-    suspend fun getUserDates(id: Long):Usuario
+    suspend fun getUserDates(username: String):Usuario
 }

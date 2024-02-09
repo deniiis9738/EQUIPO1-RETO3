@@ -33,11 +33,11 @@ class FallBackRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserDates(id: Long): Usuario {
+    override suspend fun getUserDates(username: String): Usuario {
         return try {
-            apiRepositoryImpl.getUserDates(id)
+            apiRepositoryImpl.getUserDates(username)
         } catch (e: Exception) {
-            jsonRepositoryImpl.getUserDates(id)
+            jsonRepositoryImpl.getUserDates(username)
         }
     }
 }

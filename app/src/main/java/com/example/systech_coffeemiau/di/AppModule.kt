@@ -20,7 +20,6 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
 const val SHARED_PREFERENCES_NAME = "shared_preferences"
 
 @Module
@@ -48,7 +47,7 @@ object AppModule {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssX").create()
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.122.1:8888/")
+            .baseUrl("http://192.168.56.1:8888/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -68,8 +67,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesApiRepositoryImpl(iSystechApiService: ISystechApiService): ApiRepositoryImpl {
-        return ApiRepositoryImpl(iSystechApiService)
+    fun providesApiRepositoryImpl(iSystechApiService: ISystechApiService, iLocalStorage: ILocalStorage): ApiRepositoryImpl {
+        return ApiRepositoryImpl(iSystechApiService, iLocalStorage)
     }
 
     @Provides
