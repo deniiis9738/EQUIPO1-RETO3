@@ -24,8 +24,8 @@ class JsonRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getUserDates(id: Long): Usuario {
-        val jsonInputStream = application.assets.open("usuario$id.json")
+    override suspend fun getUserDates(username: String): Usuario {
+        val jsonInputStream = application.assets.open("usuario$username.json")
         return gson.fromJson(jsonInputStream.reader(), Usuario::class.java)
     }
 }
