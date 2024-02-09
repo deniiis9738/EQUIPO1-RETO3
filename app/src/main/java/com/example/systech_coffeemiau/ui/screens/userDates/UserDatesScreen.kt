@@ -84,9 +84,9 @@ fun UserDatesScreen(loginViewModel: LoginViewModel, navController: NavHostContro
             ) {
                 Button(
                     onClick = {
+                        navController.navigate("LoginView")
                         loginViewModel.clearToken()
                         loginViewModel.setPassword("")
-                        navController.navigate("LoginView")
                     },
                     modifier = Modifier.padding(bottom = 16.dp),
                     colors = ButtonDefaults.buttonColors(

@@ -25,8 +25,6 @@ fun LoginView(
     loginViewModel: LoginViewModel,
     navController: NavController
 ) {
-    loginViewModel.clearToken()
-
     val username by loginViewModel.username.observeAsState(initial = "")
     val password by loginViewModel.password.observeAsState(initial = "")
     val passwordVisibility by loginViewModel.passwordVisibility.observeAsState(initial = false)

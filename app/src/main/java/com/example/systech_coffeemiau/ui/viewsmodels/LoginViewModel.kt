@@ -41,6 +41,10 @@ class LoginViewModel @Inject constructor(
     private var _usuario = MutableLiveData<Usuario>()
     val usuario: MutableLiveData<Usuario> = _usuario
 
+    private var _autenticado = MutableLiveData<Boolean>()
+    val autenticado: MutableLiveData<Boolean> = _autenticado
+
+
     private var _visual = MutableLiveData(VisualTransformation.None)
     val visual: LiveData<VisualTransformation> = _visual
 
@@ -78,6 +82,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun isAuthenticated(): Boolean {
+        _autenticado.postValue(loginUseCase.isAtuhenticated())
         return loginUseCase.isAtuhenticated()
     }
 

@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         if (isBarVisible) {
-                            BottomBar(navController)
+                            BottomBar(navController, loginViewModel)
                         }
                     },
                     topBar = {
@@ -87,9 +87,6 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(route = BottomBarScreen.Profile.route) {
                                 isBarVisible = true
-                                GlobalScope.launch {
-                                    loginViewModel.getActualUserDates()
-                                }
                                 UserDatesScreen(loginViewModel, navController)
                             }
                         }

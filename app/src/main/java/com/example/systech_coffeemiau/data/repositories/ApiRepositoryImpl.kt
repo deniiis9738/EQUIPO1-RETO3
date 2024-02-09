@@ -59,7 +59,11 @@ class ApiRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getActualUserDates(tokenDTO: TokenDTO): Usuario {
-        val usuarioDTO = iSystechApiService.getActualUserDates(tokenDTO)
-        return mapUsuarioDTOToModel(usuarioDTO)
+        try {
+            val usuarioDTO = iSystechApiService.getActualUserDates(tokenDTO)
+            return mapUsuarioDTOToModel(usuarioDTO)
+        } catch (e: Exception) {
+            return Usuario(0, "", "", "", "")
+        }
     }
 }

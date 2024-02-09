@@ -23,16 +23,15 @@ fun LoginButton(
     navController: NavController,
     message: String
 ) {
-//    val username by loginViewModel.username.observeAsState(initial = "")
+    val autenticado by loginViewModel.autenticado.observeAsState(initial = false)
 
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
             GlobalScope.launch {
                 loginViewModel.login()
-//                loginViewModel.getUserDates(username)
             }
-            if (loginViewModel.isAuthenticated()) {
+            if (autenticado) {
                 navController.navigate("ProductosView")
             }
         },
