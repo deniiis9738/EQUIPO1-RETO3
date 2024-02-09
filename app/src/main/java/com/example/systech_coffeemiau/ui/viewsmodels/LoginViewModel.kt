@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.systech_coffeemiau.data.sources.dto.TokenDTO
 import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.usecases.LoginUseCase
 import com.example.systech_coffeemiau.domain.usecases.UserUseCase
@@ -84,8 +85,20 @@ class LoginViewModel @Inject constructor(
         loginUseCase.clearToken()
     }
 
-    suspend fun getUserDates(username: String):Usuario{
-        val usuario = userUseCase.getUserDates(username)
+    fun getToken(): TokenDTO {
+        return TokenDTO(
+            loginUseCase.getToken()
+        )
+    }
+
+//    suspend fun getUserDates(username: String):Usuario{
+//        val usuario = userUseCase.getUserDates(username)
+//        _usuario.postValue(usuario)
+//        return usuario
+//    }
+
+    suspend fun getActualUserDates(): Usuario{
+        val usuario = userUseCase.getActualUserDates(getToken())
         _usuario.postValue(usuario)
         return usuario
     }

@@ -19,4 +19,8 @@ class LoginUseCase @Inject constructor(
     fun clearToken() {
         iLocalStorage.clearToken()
     }
+
+    fun getToken(): String {
+        return iLocalStorage.getToken()
+    }
 }
