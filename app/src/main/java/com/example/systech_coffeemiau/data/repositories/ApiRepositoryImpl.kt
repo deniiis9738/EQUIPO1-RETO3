@@ -5,21 +5,23 @@ import com.example.systech_coffeemiau.auth.ILocalStorage
 import com.example.systech_coffeemiau.data.sources.dto.LoginDTO
 import com.example.systech_coffeemiau.data.sources.dto.TokenDTO
 import com.example.systech_coffeemiau.data.sources.dto.UsuarioDTO
+import com.example.systech_coffeemiau.domain.models.GatoModel
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.models.Usuario
+import com.example.systech_coffeemiau.domain.repositories.ISystechGatoRepository
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
+import com.example.systech_coffeemiau.mappers.dtotomodel.mapGatoDTOToModel
 import com.example.systech_coffeemiau.mappers.dtotomodel.mapProductoDTOToModel
 import com.example.systech_coffeemiau.mappers.dtotomodel.mapUsuarioDTOToModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(
     private val iSystechApiService: ISystechApiService,
     private val iLocalStorage: ILocalStorage
-): ISystechSolutionsRepository {
+): ISystechSolutionsRepository, ISystechGatoRepository {
     override suspend fun getProductList(): List<Product> {
         val products = iSystechApiService.getProducts()
         return products.map { mapProductoDTOToModel(it) }
@@ -28,6 +30,16 @@ class ApiRepositoryImpl @Inject constructor(
     override suspend fun getProducto(id: Long): Product {
         val productoDTO = iSystechApiService.getProducto(id)
         return mapProductoDTOToModel(productoDTO)
+    }
+
+    override suspend fun getGatoList(): List<GatoModel> {
+        val gatos = iSystechApiService.getGatoList()
+        return gatos.map { mapGatoDTOToModel(it) }
+    }
+
+    override suspend fun getGato(idGato: Long): GatoModel {
+        val gato = iSystechApiService.getGato(idGato)
+        return mapGatoDTOToModel(gato)
     }
 
     @OptIn(DelicateCoroutinesApi::class)

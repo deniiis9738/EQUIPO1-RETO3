@@ -4,9 +4,6 @@ import android.util.Log
 import com.example.systech_coffeemiau.auth.ILocalStorage
 import com.example.systech_coffeemiau.data.sources.dto.LoginDTO
 import com.example.systech_coffeemiau.domain.repositories.ILoginRepository
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(

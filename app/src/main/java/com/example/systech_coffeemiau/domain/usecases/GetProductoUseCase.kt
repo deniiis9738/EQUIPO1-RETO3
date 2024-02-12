@@ -4,7 +4,7 @@ import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.repositories.ISystechSolutionsRepository
 import javax.inject.Inject
 
-class ProductoUseCase @Inject constructor(
+class GetProductoUseCase @Inject constructor(
     private val systechSolutionsRepository: ISystechSolutionsRepository
 ) {
     suspend fun getProductList(): List<Product> {

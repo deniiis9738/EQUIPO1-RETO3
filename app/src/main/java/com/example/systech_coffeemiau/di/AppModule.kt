@@ -4,13 +4,13 @@ import android.app.Application
 import android.content.Context
 import com.example.systech_coffeemiau.auth.AuthInterceptor
 import com.example.systech_coffeemiau.auth.ILocalStorage
-import com.example.systech_coffeemiau.data.repositories.ILoginService
-import com.example.systech_coffeemiau.data.repositories.LoginRepositoryImpl
 import com.example.systech_coffeemiau.auth.SharedPreferencesILocalStorage
 import com.example.systech_coffeemiau.data.repositories.ApiRepositoryImpl
 import com.example.systech_coffeemiau.data.repositories.FallBackRepositoryImpl
+import com.example.systech_coffeemiau.data.repositories.ILoginService
 import com.example.systech_coffeemiau.data.repositories.ISystechApiService
 import com.example.systech_coffeemiau.data.repositories.JsonRepositoryImpl
+import com.example.systech_coffeemiau.data.repositories.LoginRepositoryImpl
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -20,6 +20,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 const val SHARED_PREFERENCES_NAME = "shared_preferences"
 const val IP_PERE = "http://192.168.122.1:8888/"
 const val IP_PITI = "http://192.168.0.17:8888/"

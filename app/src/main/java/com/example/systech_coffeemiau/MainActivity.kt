@@ -1,6 +1,5 @@
 package com.example.systech_coffeemiau
 
-import com.example.systech_coffeemiau.ui.screens.LoginView
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -20,14 +19,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.systech_coffeemiau.ui.components.BottomBar
 import com.example.systech_coffeemiau.ui.components.BottomBarScreen
 import com.example.systech_coffeemiau.ui.components.TopBar
+import com.example.systech_coffeemiau.ui.screens.LoginView
+import com.example.systech_coffeemiau.ui.screens.cat.GatoListScreen
+import com.example.systech_coffeemiau.ui.screens.cat.GatoScreen
 import com.example.systech_coffeemiau.ui.screens.product.ProductListScreen
+import com.example.systech_coffeemiau.ui.screens.userDates.UserDatesScreen
 import com.example.systech_coffeemiau.ui.theme.Systech_CoffeeMiauTheme
+import com.example.systech_coffeemiau.ui.viewsmodels.GatoViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
-import com.example.systech_coffeemiau.ui.components.BottomBar
-import com.example.systech_coffeemiau.ui.screens.userDates.UserDatesScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,6 +45,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val loginViewModel: LoginViewModel by viewModels()
                 val productoViewModel: ProductoViewModel by viewModels()
+                val gatoViewModel: GatoViewModel by viewModels()
 
                 var isBarVisible by remember { mutableStateOf(true) }
 
@@ -62,7 +66,10 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(top = it.calculateTopPadding(), bottom = it.calculateTopPadding())
+                            .padding(
+                                top = it.calculateTopPadding(),
+                                bottom = it.calculateTopPadding()
+                            )
                             .background(Color.Transparent)
                     ) {
                         NavHost(
@@ -77,13 +84,23 @@ class MainActivity : ComponentActivity() {
                                 isBarVisible = true
                                 ProductListScreen(productoViewModel)
                             }
+                            composable("GatosList_View") {
+                                isBarVisible = true
+                                GatoListScreen(navController, gatoViewModel)
+                            }
+                            composable("GatoDetail_View") {
+                                isBarVisible = true
+                                GatoScreen(gatoViewModel)
+                            }
+
+                            //BOTTOM BAR
                             composable(route = BottomBarScreen.Productos.route) {
                                 isBarVisible = true
                                 ProductListScreen(productoViewModel)
                             }
                             composable(route = BottomBarScreen.Cat.route) {
                                 isBarVisible = true
-                                ProductListScreen(productoViewModel)
+                                GatoListScreen(navController, gatoViewModel)
                             }
                             composable(route = BottomBarScreen.Profile.route) {
                                 isBarVisible = true

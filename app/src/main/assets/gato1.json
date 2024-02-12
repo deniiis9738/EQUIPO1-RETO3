@@ -1,0 +1,11 @@
+{
+  "idGato":6,
+  "nombre":"Chloe",
+  "foto":"chloe.jpg",
+  "color":"Blanco",
+  "raza":"Ragdoll",
+  "caracter":"Relajada",
+  "informacionMedica":"Vacunación en curso",
+  "enfermedades":"Ninguna",
+  "castrado":false
+}
