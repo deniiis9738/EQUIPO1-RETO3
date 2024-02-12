@@ -35,6 +35,7 @@ import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 fun UserDatesScreen(loginViewModel: LoginViewModel, navController: NavHostController) {
 
     val userDates by loginViewModel.usuario.observeAsState()
+    val autenticado by loginViewModel.autenticado.observeAsState()
 
     Column(
         modifier = Modifier
@@ -84,6 +85,7 @@ fun UserDatesScreen(loginViewModel: LoginViewModel, navController: NavHostContro
             ) {
                 Button(
                     onClick = {
+                        loginViewModel.changeAutenticado(false)
                         navController.navigate("LoginView")
                         loginViewModel.clearToken()
                         loginViewModel.setPassword("")

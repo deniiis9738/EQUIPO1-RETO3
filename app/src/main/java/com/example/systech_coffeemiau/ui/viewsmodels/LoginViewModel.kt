@@ -77,12 +77,16 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 loginUseCase.login(username.value.toString(), password.value.toString())
+                if (isAuthenticated()) {
+                    autenticado.postValue(true)
+                } else {
+                    autenticado.postValue(false)
+                }
             }
         }
     }
 
     fun isAuthenticated(): Boolean {
-        _autenticado.postValue(loginUseCase.isAtuhenticated())
         return loginUseCase.isAtuhenticated()
     }
 
@@ -94,6 +98,10 @@ class LoginViewModel @Inject constructor(
         return TokenDTO(
             loginUseCase.getToken()
         )
+    }
+
+    fun changeAutenticado(value: Boolean) {
+        autenticado.postValue(value)
     }
 
 //    suspend fun getUserDates(username: String):Usuario{
