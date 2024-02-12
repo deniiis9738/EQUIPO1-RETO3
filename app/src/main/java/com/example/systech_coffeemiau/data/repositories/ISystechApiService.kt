@@ -28,6 +28,6 @@ interface ISystechApiService {
     @GET("/api/gatos")
     suspend fun getGatoList(): List<GatoDTO>
 
-    @GET("/api/gatos/noAdoptados/{id}")
-    suspend fun getGato(@Path("id") idGato: Long): GatoDTO
+    @GET("/api/gatos/noAdoptados/{idGato}")
+    suspend fun getGato(@Path("idGato") idGato: Long): GatoDTO
 }

@@ -33,7 +33,8 @@ class JsonRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getGato(idGato: Long): GatoModel {
-        TODO("Not yet implemented")
+        val gatoLocalData = application.assets.open("gato$idGato.json")
+        return gson.fromJson(gatoLocalData.reader(), GatoModel::class.java)
     }
 
     override suspend fun getGatoList(): List<GatoModel> {
