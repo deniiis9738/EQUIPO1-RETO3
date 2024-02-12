@@ -11,7 +11,7 @@ import com.example.systech_coffeemiau.ui.components.cat.GatoMedicalInfo
 import com.example.systech_coffeemiau.ui.viewsmodels.GatoViewModel
 
 @Composable
-fun GatoScreen(gatoViewModel: GatoViewModel) {
+fun GatoScreen(gato: GatoViewModel) {
 
     Surface (
         modifier = Modifier.fillMaxSize(),
