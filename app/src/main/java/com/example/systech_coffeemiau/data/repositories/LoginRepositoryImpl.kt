@@ -26,7 +26,7 @@ class LoginRepositoryImpl @Inject constructor(
                 Log.d("Fallo Token", "No ha podido coger token")
             }
         } catch (e: Exception) {
-
+            Log.d("Fallo Response", "No hay response")
         }
     }
 }

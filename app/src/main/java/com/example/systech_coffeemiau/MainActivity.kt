@@ -32,10 +32,12 @@ import com.example.systech_coffeemiau.ui.viewsmodels.GatoViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         if (isBarVisible) {
-                            BottomBar(navController)
+                            BottomBar(navController, loginViewModel)
                         }
                     },
                     topBar = {
@@ -72,7 +74,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = /*if(loginViewModel.isAuthenticated()) "ProductosView" else*/ "LoginView"
+                            startDestination = if(loginViewModel.isAuthenticated()) "ProductosView" else "LoginView"
                         ) {
                             composable("LoginView") {
                                 isBarVisible = false

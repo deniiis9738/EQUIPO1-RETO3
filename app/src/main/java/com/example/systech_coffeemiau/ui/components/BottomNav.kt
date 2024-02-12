@@ -24,9 +24,12 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.systech_coffeemiau.ui.theme.PastelOrangeComplementario
+import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomBar(navController: NavHostController, loginViewModel: LoginViewModel) {
     val screens = listOf(
         BottomBarScreen.Productos,
         BottomBarScreen.Cat,
@@ -51,7 +54,8 @@ fun BottomBar(navController: NavHostController) {
             AddItem(
                 screen = screen,
                 navController = navController,
-                isSelected = screen == initialSelectedItem
+                isSelected = screen == initialSelectedItem,
+                loginViewModel = loginViewModel
             )
         }
     }
@@ -61,7 +65,8 @@ fun BottomBar(navController: NavHostController) {
 fun AddItem(
     screen: BottomBarScreen,
     navController: NavHostController,
-    isSelected: Boolean
+    isSelected: Boolean,
+    loginViewModel: LoginViewModel
 ) {
     val background =
         if (isSelected) PastelOrangeComplementario else Color.Transparent
@@ -78,6 +83,11 @@ fun AddItem(
                 navController.navigate(screen.route) {
                     popUpTo(navController.graph.findStartDestination().id)
                     launchSingleTop = true
+                    if (screen.title.equals("Perfil")) {
+                        GlobalScope.launch {
+                            loginViewModel.getActualUserDates()
+                        }
+                    }
                 }
             })
     ) {

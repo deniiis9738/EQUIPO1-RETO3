@@ -1,6 +1,7 @@
 package com.example.systech_coffeemiau.data.repositories
 
 import android.app.Application
+import com.example.systech_coffeemiau.data.sources.dto.TokenDTO
 import com.example.systech_coffeemiau.domain.models.GatoModel
 import com.example.systech_coffeemiau.domain.models.Product
 import com.example.systech_coffeemiau.domain.models.Usuario
@@ -30,6 +31,10 @@ class JsonRepositoryImpl @Inject constructor(
     override suspend fun getUserDates(username: String): Usuario {
         val jsonInputStream = application.assets.open("usuario$username.json")
         return gson.fromJson(jsonInputStream.reader(), Usuario::class.java)
+    }
+
+    override suspend fun getActualUserDates(tokenDTO: TokenDTO): Usuario {
+        TODO("Not yet implemented")
     }
 
     override suspend fun getGato(idGato: Long): GatoModel {

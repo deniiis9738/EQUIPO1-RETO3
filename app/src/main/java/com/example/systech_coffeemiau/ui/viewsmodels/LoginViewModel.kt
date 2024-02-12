@@ -10,14 +10,22 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.systech_coffeemiau.data.sources.dto.TokenDTO
 import com.example.systech_coffeemiau.domain.models.Usuario
 import com.example.systech_coffeemiau.domain.usecases.LoginUseCase
 import com.example.systech_coffeemiau.domain.usecases.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val userUseCase: UserUseCase): ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    private val userUseCase: UserUseCase
+): ViewModel() {
     private var _email = MutableLiveData("")
     val email: LiveData<String> = _email
 
@@ -32,6 +40,10 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
 
     private var _usuario = MutableLiveData<Usuario>()
     val usuario: MutableLiveData<Usuario> = _usuario
+
+    private var _autenticado = MutableLiveData<Boolean>()
+    val autenticado: MutableLiveData<Boolean> = _autenticado
+
 
     private var _visual = MutableLiveData(VisualTransformation.None)
     val visual: LiveData<VisualTransformation> = _visual
@@ -61,8 +73,17 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
         return if (validateFields()) firstColor else secondColor
     }
 
-    suspend fun login() {
-        loginUseCase.login(username.value.toString(), password.value.toString())
+    fun login() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                loginUseCase.login(username.value.toString(), password.value.toString())
+                if (isAuthenticated()) {
+                    autenticado.postValue(true)
+                } else {
+                    autenticado.postValue(false)
+                }
+            }
+        }
     }
 
     fun isAuthenticated(): Boolean {
@@ -73,9 +94,33 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
         loginUseCase.clearToken()
     }
 
-    suspend fun getUserDates(username: String):Usuario{
-        val usuario = userUseCase.getUserDates(username)
+    fun getToken(): TokenDTO {
+        return TokenDTO(
+            loginUseCase.getToken()
+        )
+    }
+
+    fun changeAutenticado(value: Boolean) {
+        autenticado.postValue(value)
+    }
+
+//    suspend fun getUserDates(username: String):Usuario{
+//        val usuario = userUseCase.getUserDates(username)
+//        _usuario.postValue(usuario)
+//        return usuario
+//    }
+
+    suspend fun getActualUserDates(): Usuario{
+        val usuario = userUseCase.getActualUserDates(getToken())
         _usuario.postValue(usuario)
         return usuario
+    }
+
+    fun setUsername(newUsername: String) {
+        _username.value = newUsername
+    }
+
+    fun setPassword(newPassword: String) {
+        _password.value = newPassword
     }
 }
