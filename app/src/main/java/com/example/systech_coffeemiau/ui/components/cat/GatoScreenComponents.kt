@@ -1,8 +1,13 @@
 package com.example.systech_coffeemiau.ui.components.cat
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScopeInstance.align
+import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScopeInstance.align
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,7 +22,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -104,20 +111,49 @@ fun GatoMedicalInfo(gato: GatoModel) {
 
         if (showShelter){
             item {
-                Text("${gato.name} está a los cuidados de la Protectora Amigos Peludos." +
-                        "Cualquier duda para su adopción ponte en contacto con ellos a través de:\n" +
-                        "amigospeludos@adoptaunamigo.gmail.com")
+                Text("Quienes somos:\n" +
+                        "\n" +
+                        "ASPAC, Amigos de los Animales de Castellón, es una Asociación sin ánimo de lucro," +
+                        " legalmente constituida e independiente de cualquier grupo político, religioso o social," +
+                        " fundada en el año 2000, dedicada a la protección y defensa de los animales.\n" +
+                        "\n" +
+                        "ASPAC no tiene refugio de acogida de animales, pero desde la seguridad de que la " +
+                        "protección y la defensa de estos puede realizarse desde otros muchos campos, " +
+                        "desde su fundación ha basado su labor en la difusión de los derechos de los animales, " +
+                        "en la tramitación de denuncias por abusos y malos tratos, en la concienciación tanto de " +
+                        "los organismos oficiales como de forma directa sobre la población de la necesidad de un " +
+                        "cambio en el trato que se da a los animales y en la lucha por una aplicación efectiva de " +
+                        "las leyes de protección de los animales.\n" +
+                        "\n" +
+                        "Nuestra Asociación está formada por socios y voluntarios."
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.aspac_logo),
+                    contentDescription = "Shelter Logo",
+                    modifier = Modifier.size(100.dp).align(Alignment.CenterHorizontally)
+                )
+
+                Text(
+                    text = "Avenida Almazora 40A\n" +
+                            "12005 Castellón, España\n" +
+                            "E-mail: info@aspac.org.es"
+                )
             }
         }
 
         item{
 
             Button(
-                onClick = {
-
-                }
+                onClick = { showOthers = !showOthers }
             ) {
                 Text(text = "OTROS")
+            }
+        }
+
+        if (showOthers){
+            item {
+
             }
         }
     }
