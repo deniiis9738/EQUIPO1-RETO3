@@ -2,16 +2,13 @@ package com.example.systech_coffeemiau.ui.components.cat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScopeInstance.align
-import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScopeInstance.align
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CatchingPokemon
 import androidx.compose.material3.Button
@@ -24,6 +21,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -125,19 +124,21 @@ fun GatoMedicalInfo(gato: GatoModel) {
                         "cambio en el trato que se da a los animales y en la lucha por una aplicación efectiva de " +
                         "las leyes de protección de los animales.\n" +
                         "\n" +
-                        "Nuestra Asociación está formada por socios y voluntarios."
+                        "Nuestra Asociación está formada por socios y voluntarios.",
+                    color = Color.Black
                 )
 
                 Image(
                     painter = painterResource(id = R.drawable.aspac_logo),
                     contentDescription = "Shelter Logo",
-                    modifier = Modifier.size(100.dp).align(Alignment.CenterHorizontally)
+                    modifier = Modifier.size(120.dp).padding(start = 60.dp).clip(CircleShape)
                 )
 
                 Text(
                     text = "Avenida Almazora 40A\n" +
                             "12005 Castellón, España\n" +
-                            "E-mail: info@aspac.org.es"
+                            "E-mail: info@aspac.org.es",
+                    color = Color.Black
                 )
             }
         }
