@@ -11,7 +11,7 @@ class GetGatoUseCase @Inject constructor(
         return fallBackRepositoryImpl.getGatoList()
     }
 
-    suspend fun getGato(gato: GatoModel): GatoModel {
-        return fallBackRepositoryImpl.getGato(gato.idGato)
+    suspend fun getGato(id: Long): GatoModel {
+        return fallBackRepositoryImpl.getGato(id)
     }
 }

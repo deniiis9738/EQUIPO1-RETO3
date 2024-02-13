@@ -31,7 +31,7 @@ fun TopBar() {
             },
             title = {
                 Text(
-                    text = "CoffeeMiau",
+                    text = "Coffee&Miau",
                     color = PeachyPink,
                     fontFamily = FontFamily(Font(R.font.shrikhand_regular)),
                     modifier = Modifier

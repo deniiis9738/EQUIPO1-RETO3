@@ -32,8 +32,6 @@ import com.example.systech_coffeemiau.ui.viewsmodels.GatoViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.LoginViewModel
 import com.example.systech_coffeemiau.ui.viewsmodels.ProductoViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

@@ -30,11 +30,15 @@ class GatoViewModel @Inject constructor(private val gatoUseCase: GetGatoUseCase)
             val loadedGatoList = withContext(Dispatchers.IO){
                 val gatoList = gatoUseCase.getGatoList()
 
-                gatoList.map { gatoUseCase.getGato(it) }
+                gatoList.map { gatoUseCase.getGato(it.idGato) }
             }
 
             _gatoList.postValue(loadedGatoList)
         }
+    }
+
+    fun setGato(gato: GatoModel) {
+        _gato.value = gato
     }
 
 }
